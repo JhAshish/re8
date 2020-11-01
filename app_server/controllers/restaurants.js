@@ -1,7 +1,7 @@
 /* Controllers for restaurants */
 /* Home page */
 var homelist = (req, res) => {
-    res.render('index', { title: 'Home' });
+    res.render('restaurants_list', { title: 'Home' });
 };
 
 /* Info page */
