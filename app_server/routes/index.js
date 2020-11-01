@@ -1,9 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var ctrlMain = require('../controllers/main');
+var ctrlRestaurant = require('../controllers/restaurants');
+var ctrlOthers = require('../controllers/others');
 
-/* GET home page. 
-routing part */
-router.get('/', ctrlMain.index);
+
+/* Restaurant pages */
+router.get('/', ctrlRestaurant.homelist);
+router.get('/restaurant', ctrlRestaurant.restaurantInfo);
+router.get('/restaurant/review/new', ctrlRestaurant.addReview);
+
+/* Other pages */
+router.get('/about', ctrlOthers.about);
 
 module.exports = router;
