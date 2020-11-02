@@ -1,0 +1,76 @@
+extends layout
+
+block content
+        .row.banner
+            .col-12
+                h1 Coffee Shop
+        .row
+            .col-12.col-lg-9
+                .row
+                    .col-12.col-md-6
+                        p.rating
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star
+                        p Yashodham colony, Malkapur
+                        .card.card-primary
+                            .card-block
+                                h2.card-title Opening hours
+                                p.card-text Whole Week : 9:00am - 8:00pm
+                            .card.card-primary
+                                .card-block
+                                    h2.card-title Facilities
+                                    span.badge.badge-warning
+                                        i.fa.fa-check
+                                        | &nbsp;Hot Coffee
+                                    |   &nbsp;
+                                    span.badge.badge-warning
+                                        i.fa.fa-check
+                                        |   &nbsp;Cold Coffee
+                                    |   &nbsp;
+                                    span.badge.badge-warning
+                                        i.fa.fa-check
+                                        |   &nbsp;Snacks
+                                    |   &nbsp;
+                    .col-12.col-md-6.restaurant-map
+                        .card.card-primary
+                            .card-block
+                                h2.card-title Location Map
+                                img.img-fluid.rounded(src='https://maps.googleapis.com/maps/api/staticmap?center=51.455041,-0.9690884&zoom=17&size=400x350&sensor=false&markers=51.455041,-0.9690884&scale=2&key=AIzaSyAzUxIdXP3DX1kt3tyz2Ea-_RrsW7mySpk')
+                .row
+                    .col-12
+                        .card.card-primary.review-card
+                            .card-block
+                                a.btn.btn-primary.float-right(href='/restaurant/review/new') Add Review
+                                h2.card-title Customer reviews
+                                .row.review 
+                                    .col-12.no-gutters.review-header
+                                        span.rating
+                                            i.fas.fa-star
+                                            i.fas.fa-star
+                                            i.fas.fa-star
+                                            i.fas.fa-star
+                                            i.fas.fa-star
+                                        span.reviewAuthor Ashish      
+                                        small.reviewTimestamp  11 December 2019
+                                    .col-12
+                                        p Good beverages!
+                                .row.review
+                                    .col-12.no-gutters.review-header
+                                        span.rating
+                                            i.fas.fa-star
+                                            i.fas.fa-star
+                                            i.fas.fa-star
+                                            i.fas.fa-star
+                                            i.fas.fa-star
+                                        span.reviewAuthor Ashish      
+                                        small.reviewTimestamp  11 December 2019
+                                    .col-12
+                                        p Nice '&' cozy place.
+            .col-12.col-lg-3
+                p.lead
+                    | Coffee shop is a nice place to eat and gossip with friends.
+
+                                

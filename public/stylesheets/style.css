@@ -38,13 +38,18 @@ legend {
 }
 
 .card {
-    background-color: #33a0ff;
+    color: #2c2c2c;
+    background-color: #aed6f1;
     padding: 1rem;
 }
 
 .card-primary {
     border-color: #a2ced3;
     margin-bottom: 0.5rem;
+}
+
+.card-title {
+    color: #2c2c2c;
 }
 
 .banner {
@@ -69,8 +74,13 @@ legend {
 
 .badge-default,
 .btn-primary {
-    background-color: #ad1d28;
-    border-color: #911821;
+    background-color: #186a3b;
+    border-color: #186a3b;
+}
+
+.badge-warning {
+    background-color: #34495e;
+    color: #fff;
 }
 
 h4 a,
@@ -111,5 +121,5 @@ a:hover {
 body {
     font-family: "Cabin", Arial, sans-serif;
     color: #fff;
-    background-color: #111111;
+    background-color: #2e4053;
 }
