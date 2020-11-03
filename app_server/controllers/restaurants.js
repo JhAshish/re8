@@ -1,7 +1,13 @@
 /* Controllers for restaurants */
 /* Home page */
 var homelist = (req, res) => {
-    res.render('restaurants-list', { title: 'Home' });
+    res.render('restaurants-list', {
+        title: 'RE8 - app to rate places you visit !',
+        pageHeader: {
+            title: 'RE8',
+            strapline: 'Look up the ratings of any place.'
+        }
+    });
 };
 
 /* Info page */
