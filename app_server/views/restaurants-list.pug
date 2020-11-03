@@ -1,26 +1,25 @@
 extends layout
+include _includes/sharedHTMLfunctions
 
 block content
     .row.banner
         .col-12
-            h1 RE8
-                small &nbsp;Find places to eat.
+            h1= pageHeader.title
+                small &nbsp;#{pageHeader.strapline}
     .row
         .col-12.col-md-8
-            .card
-                .card-block
-                    h4
-                        a(href="/restaurant").span.card-title Coffee shop
-                        small &nbsp;
-                            i.fas.fa-star
-                            i.fas.fa-star
-                            i.fas.fa-star
-                            i.fas.fa-star
-                            i.fas.fa-star
-                        span.badge.badge-pill.badge-default.float-right 100m
-                    p.address Yashodham colony, Malkapur
-                    p.facilities
-                        span.badge.badge-warning Cold Coffee
-                        span.badge.badge-warning Hot Coffee
+            each restaurant in restaurants 
+                .card
+                    .card-block
+                        h4
+                            a(href="/restaurant").span.card-title= restaurant.name
+                            small &nbsp;
+                                +outputrating(restaurant.rating)
+                            span.badge.badge-pill.badge-default.float-right= restaurant.distance
+                            p.address= restaurant.address
+                            p.facilities
+                                each facility in restaurant.facilities
+                                    span.badge.badge-warning= facility
         .col-12.col-md-4
-            p.lead Looking for a place to eat peacefully ? RE8 helps you find places to eat and also to rate them according to your experience.
+            p.lead= sidebar
+            
