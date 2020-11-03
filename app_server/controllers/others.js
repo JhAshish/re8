@@ -1,6 +1,6 @@
 /* Getting about page */
 var about = (req, res) => {
-    res.render('index', { title: 'About' });
+    res.render('generic-notice', { title: 'About' });
 };
 
 module.exports = {
