@@ -5,17 +5,17 @@ mongoose.connect(dbURI, {
     useUnifiedTopology: true
 });
 mongoose.connection.on('connected', () => {
-    console.log('Mongoose connected to ${dbURI}');
+    console.log(`Mongoose connected to ${dbURI}`);
 });
 mongoose.connection.on('error', err => {
-    console.log('Mongoose connection error: ${err}');
+    console.log(`Mongoose connection error: ${err}`);
 });
 mongoose.connection.on('disconnected', () => {
     console.log('Mongoose disconnected');
 });
 const gracefulShutdown = (msg, callback) => {
     mongoose.connection.close(() => {
-        console.log('Mongoose disconnected through ${msg}');
+        console.log(`Mongoose disconnected through ${msg}`);
         callback();
     });
 };
@@ -31,3 +31,5 @@ process.on('SIGTERM', () => {
         process.exit(0);
     });
 });
+
+require('./restaurants');
