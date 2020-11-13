@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const dbURI = 'mongodb://localhost/re8';
+if (process.env.NODE_ENV === 'production') {
+    dbURI = process.env.MONGODB_URI;
+}
 mongoose.connect(dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true

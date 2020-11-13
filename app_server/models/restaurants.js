@@ -51,3 +51,5 @@ const restaurantSchema = new mongoose.Schema({
 });
 
 restaurantSchema.index({ coords: '2dsphere' });
+
+mongoose.model('Restaurant', restaurantSchema);
