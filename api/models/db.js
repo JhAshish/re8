@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 let dbURI = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/re8';
-mongoose.connect(dbURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+const connect = () => {
+    setTimeout(() => mongoose.connect(dbURI, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true
+    }), 1000);
+}
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${dbURI}`);
 });
@@ -31,5 +34,7 @@ process.on('SIGTERM', () => {
         process.exit(0);
     });
 });
+
+connect();
 
 require('./restaurants');

@@ -1,5 +1,19 @@
 const mongoose = require('mongoose');
 
+const openingTimeSchema = new mongoose.Schema({
+    days: {
+        type: String,
+        required: true
+    },
+    opening: String,
+    closing: String,
+    closed: {
+        type: Boolean,
+        required: true
+    }
+});
+
+
 const reviewSchema = new mongoose.Schema({
     autor: String,
     rating: {
@@ -16,18 +30,6 @@ const reviewSchema = new mongoose.Schema({
 });
 
 
-const openingTimeSchema = new mongoose.Schema({
-    days: {
-        type: String,
-        required: true
-    },
-    opening: String,
-    closing: String,
-    closed: {
-        type: Boolean,
-        required: true
-    }
-});
 
 const restaurantSchema = new mongoose.Schema({
     name: {
@@ -47,9 +49,9 @@ const restaurantSchema = new mongoose.Schema({
         type: { type: String },
         coordinates: [Number]
     },
-    openingTimes: [openingTimeSchema]
+    openingTimes: [openingTimeSchema],
+    reviews: [reviewSchema]
 });
 
 restaurantSchema.index({ coords: '2dsphere' });
-
 mongoose.model('Restaurant', restaurantSchema);
