@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var ctrlRestaurant = require('../controllers/restaurants');
-var ctrlOthers = require('../controllers/others');
+const express = require('express');
+const router = express.Router();
+const ctrlRestaurant = require('../controllers/restaurants');
+const ctrlOthers = require('../controllers/others');
 
 
 /* Restaurant pages */

@@ -1,6 +1,6 @@
 /* Controllers for restaurants */
 /* Home page */
-var homelist = (req, res) => {
+const homelist = (req, res) => {
     res.render('restaurants-list', {
         title: 'RE8 - Rate places you visit !',
         pageHeader: {
@@ -31,7 +31,7 @@ var homelist = (req, res) => {
 };
 
 /* Info page */
-var restaurantInfo = (req, res) => {
+const restaurantInfo = (req, res) => {
     res.render('restaurant-info', {
         title: 'Coffee Mugs',
         pageHeader: { title: 'Coffee Mugs' },
@@ -74,7 +74,7 @@ var restaurantInfo = (req, res) => {
 };
 
 /* Add review page */
-var addReview = (req, res) => {
+const addReview = (req, res) => {
     res.render('restaurant-review-form', {
         title: 'Review Coffee Mugs',
         pageHeader: { title: 'Review Coffee Mugs' }
