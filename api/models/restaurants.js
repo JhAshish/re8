@@ -15,7 +15,7 @@ const openingTimeSchema = new mongoose.Schema({
 
 
 const reviewSchema = new mongoose.Schema({
-    autor: String,
+    author: String,
     rating: {
         type: Number,
         required: true,
