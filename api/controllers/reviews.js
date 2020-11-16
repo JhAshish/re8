@@ -114,7 +114,55 @@ const reviewsReadOne = (req, res) => {
             }
         });
 };
-const reviewsUpdateOne = (req, res) => {};
+const reviewsUpdateOne = (req, res) => {
+    if (!req.params.reviewid || !req.params.restaurantid) {
+        return res
+            .status(400)
+            .json({ 'message': 'restaurantid and reviewid is required!' });
+    }
+    Res
+        .findById(req.params.restaurantid)
+        .select('reviews')
+        .exec((err, restaurant) => {
+            if (!restaurant) {
+                return res
+                    .status(400)
+                    .json({ 'message': 'restaurant not found' })
+            } else if (err) {
+                return res
+                    .status(404)
+                    .json({ 'message': `${err} this is error!` });
+            }
+            if (restaurant.reviews && restaurant.reviews.length > 0) {
+                const thisReview = restaurant.reviews.id(req.params.reviewid);
+                if (!thisReview) {
+                    return res
+                        .status(400)
+                        .json({ 'message': 'review not found!' });
+                } else {
+                    thisReview.author = req.body.author;
+                    thisReview.rating = req.body.rating;
+                    thisReview.reviewText = req.body.reviewText;
+                    restaurant.save((err, restaurant) => {
+                        if (err) {
+                            return res
+                                .status(404)
+                                .json({ 'message': `${err} this is error!` });
+                        } else {
+                            updateAverageRating(restaurant._id);
+                            res
+                                .status(200)
+                                .json(thisReview);
+                        }
+                    });
+                }
+            } else {
+                res
+                    .status(400)
+                    .json({ 'message': 'No review to update!' });
+            }
+        });
+};
 const reviewsDeleteOne = (req, res) => {};
 
 module.exports = {
