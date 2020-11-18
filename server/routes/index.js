@@ -6,8 +6,11 @@ const ctrlOthers = require('../controllers/others');
 
 /* Restaurant pages */
 router.get('/', ctrlRestaurant.homelist);
-router.get('/restaurant', ctrlRestaurant.restaurantInfo);
-router.get('/restaurant/review/new', ctrlRestaurant.addReview);
+router.get('/restaurant/:restaurantid', ctrlRestaurant.restaurantInfo);
+router
+    .route('/restaurant/:restaurantid/review/new')
+    .get(ctrlRestaurant.addReview)
+    .post(ctrlRestaurant.doAddReview);
 
 /* Other pages */
 router.get('/about', ctrlOthers.about);

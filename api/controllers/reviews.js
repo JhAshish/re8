@@ -43,7 +43,7 @@ const doAddReview = (req, res, restaurant) => {
             if (err) {
                 res
                     .status(400)
-                    .json({ 'message': `${err} this is the error!` });
+                    .json(err);
             } else {
                 updateAverageRating(restaurant._id);
                 const thisReview = restaurant.reviews.slice(-1).pop();
@@ -163,7 +163,53 @@ const reviewsUpdateOne = (req, res) => {
             }
         });
 };
-const reviewsDeleteOne = (req, res) => {};
+const reviewsDeleteOne = (req, res) => {
+    const { restaurantid, reviewid } = req.params;
+    if (!restaurantid || !reviewid) {
+        return res
+            .status(400)
+            .json({ 'message': 'restaurantid and reviewid is required!' });
+    }
+    Res
+        .findById(restaurantid)
+        .select('reviews')
+        .exec((err, restaurant) => {
+            if (!restaurant) {
+                return res
+                    .status(400)
+                    .json({ 'message': 'restaurant not found!' });
+            } else if (err) {
+                return res
+                    .status(404)
+                    .json({ 'message': `${err} this is error!` });
+            }
+            if (restaurant.reviews && restaurant.reviews.length > 0) {
+                if (!restaurant.reviews.id(reviewid)) {
+                    return res
+                        .status(400)
+                        .json({ 'message': 'review not found!' });
+                } else {
+                    restaurant.reviews.id(reviewid).remove();
+                    restaurant.save(err => {
+                        if (err) {
+                            return res
+                                .status(404)
+                                .json({ 'message': `${err} this is error!` });
+                        } else {
+                            updateAverageRating(restaurant._id);
+                            res
+                                .status(204)
+                                .json(null);
+                        }
+                    });
+                }
+            } else {
+                res
+                    .status(404)
+                    .json({ 'message': 'review not present!' });
+            }
+        });
+};
 
 module.exports = {
     reviewsCreate,

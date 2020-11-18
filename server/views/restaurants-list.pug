@@ -8,11 +8,12 @@ block content
                 small &nbsp;#{pageHeader.strapline}
     .row
         .col-12.col-md-8
+            .error= message
             each restaurant in restaurants 
                 .card
                     .card-block
                         h4
-                            a(href="/restaurant").span.card-title= restaurant.name
+                            a(href=`/restaurant/${restaurant._id}`).span.card-title= restaurant.name
                             small &nbsp;
                                 +outputRating(restaurant.rating)
                             span.badge.badge-pill.badge-default.float-right= restaurant.distance

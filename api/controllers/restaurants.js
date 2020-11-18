@@ -17,7 +17,7 @@ const restaurantListByDistance = async(req, res) => {
         $limit: 10
 
     };
-    if (!lng || !lat) {
+    if ((!lng && lng != 0) || (!lat && lat != 0)) {
         return res
             .status(404)
             .json({ 'message': 'lng and lat required!' });
@@ -36,7 +36,7 @@ const restaurantListByDistance = async(req, res) => {
                 address: result.address,
                 rating: result.rating,
                 facilities: result.facilities,
-                distance: `${result.distance.calculated.toFixed()}m`
+                distance: `${result.distance.calculated.toFixed()}`
             }
         });
         return res
@@ -89,12 +89,12 @@ const restaurantsReadOne = (req, res) => {
         .exec((err, restaurant) => {
             if (!restaurant) {
                 return res
-                    .status(404)
+                    .status(400)
                     .json({ "message": "Restaurant not found!" });
             } else if (err) {
                 return res
                     .status(404)
-                    .json(err);
+                    .json({ 'message': `${err} this is error` });
             }
             res
                 .status(200)
@@ -151,7 +151,28 @@ const restaurantsUpdateOne = (req, res) => {
             });
         });
 };
-const restaurantsDeleteOne = (req, res) => {};
+const restaurantsDeleteOne = (req, res) => {
+    const { restaurantid } = req.params;
+    if (restaurantid) {
+        Res
+            .findByIdAndDelete(restaurantid)
+            .exec((err, restaurant) => {
+                if (err) {
+                    return res
+                        .status(404)
+                        .json({ 'message': `${err} this is error!` });
+                } else {
+                    res
+                        .status(204)
+                        .json(null);
+                }
+            })
+    } else {
+        res
+            .status(400)
+            .json({ 'message': 'restaurant not found!' });
+    }
+};
 module.exports = {
     restaurantListByDistance,
     restaurantsCreate,
