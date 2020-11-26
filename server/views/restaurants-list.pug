@@ -9,18 +9,11 @@ block content
     .row
         .col-12.col-md-8
             .error= message
-            each restaurant in restaurants 
-                .card
-                    .card-block
-                        h4
-                            a(href=`/restaurant/${restaurant._id}`).span.card-title= restaurant.name
-                            small &nbsp;
-                                +outputRating(restaurant.rating)
-                            span.badge.badge-pill.badge-default.float-right= restaurant.distance
-                            p.address= restaurant.address
-                            p.facilities
-                                each facility in restaurant.facilities
-                                    span.badge.badge-warning= facility
+            app-home-list
         .col-12.col-md-4
             p.lead= sidebar
+block scripts
+    script(src='/build/main.fbfa99dd405418d32796.js')
+    script(src='/build/polyfills.bf99d438b005d57b2b31.js')
+    script(src='/build/runtime.359d5ee4682f20e936e9.js')
             

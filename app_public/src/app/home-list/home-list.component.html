@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="error">{{ message }}</div>
+    <div *ngFor="let restaurant of restaurants" class="card-block">
+        <h4>
+            <a href="/restaurant/{{restaurant._id}}">{{restaurant.name}}</a>
+            <small>&nbsp;
+                <i class="fa{{ restaurant.rating < 1 ? 'r' : 's'}} fa-star"></i>
+                <i class="fa{{ restaurant.rating < 2 ? 'r' : 's'}} fa-star"></i>
+                <i class="fa{{ restaurant.rating < 3 ? 'r' : 's'}} fa-star"></i>
+                <i class="fa{{ restaurant.rating < 4 ? 'r' : 's'}} fa-star"></i>
+                <i class="fa{{ restaurant.rating < 5 ? 'r' : 's'}} fa-star"></i>
+            </small>
+            <span class="badge badge-pill badge-default float-right">{{restaurant.distance | distance}}</span>
+        </h4>
+        <p class="address">{{restaurant.address}}</p>
+        <div class="facilities">
+            <span *ngFor="let facility of restaurant.facilities" class="badge badge-warning">{{facility}}</span>
+        </div>
+    </div>
+</div>
